@@ -4,7 +4,7 @@ const ProductDetails = () => {
   const shoe = useLoaderData();
   const { title, brand, price, description, image_url } = shoe;
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center mt-8 mb-8">
       <div className="card w-96 h-auto bg-base-100 shadow-xl">
         <figure className="bg-base-200  ">
           <img className=" scale-150 " src={image_url} alt="Shoes" />

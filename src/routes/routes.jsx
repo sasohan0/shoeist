@@ -12,12 +12,13 @@ import PrivateRoute from "./PrivateRoute";
 import AllProducts from "../pages/AllProducts";
 import AddProducts from "../pages/AddProduct";
 import EditProduct from "../pages/EditProduct";
+import ErrorPage from "../pages/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
-    errorElement: <div>404 Not Found</div>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -47,6 +48,7 @@ export const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <DashboardLayout></DashboardLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "home",
