@@ -5,6 +5,10 @@ import ProductDetails from "../pages/ProductDetails";
 import Login from "../Login-Registration/Login";
 import About from "../pages/About";
 import Registration from "../Login-Registration/Registration";
+import DashboardLayout from "../layouts/DashboardLayout";
+
+import Dashboard from "../pages/Dashboard";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +38,20 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Registration></Registration>,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout></DashboardLayout>,
+    children: [
+      {
+        path: "home",
+        element: (
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        ),
       },
     ],
   },
