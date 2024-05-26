@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-purple-300">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -24,22 +26,36 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a>Item 1</a>
+              <Link to={"/"}>Home</Link>
             </li>
             <li>
-              <a>Parent</a>
-              <ul className="p-2">
+              <Link to={"/about"}>About</Link>
+            </li>
+            {!user && (
+              <>
                 <li>
-                  <a>Submenu 1</a>
+                  <Link to={"/login"}>Login</Link>
                 </li>
                 <li>
-                  <a>Submenu 2</a>
+                  <Link to={"/register"}>Register</Link>
                 </li>
-              </ul>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
+              </>
+            )}
+            {user && (
+              <li>
+                <Link to={"/dashboard/home/"}>Dashboard</Link>
+              </li>
+            )}
+            {user && (
+              <li>
+                <button
+                  onClick={handleLogout}
+                  className="btn bg-red-500 text-white"
+                >
+                  Logout
+                </button>
+              </li>
+            )}
           </ul>
         </div>
         <a className="btn btn-ghost text-xl">Shoeist</a>
@@ -47,28 +63,47 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a>Item 1</a>
+            <Link to={"/"}>Home</Link>
           </li>
           <li>
-            <details>
-              <summary>Parent</summary>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </details>
+            <Link to={"/about"}>About</Link>
           </li>
-          <li>
-            <a>Item 3</a>
-          </li>
+          {!user && (
+            <>
+              <li>
+                <Link to={"/login"}>Login</Link>
+              </li>
+              <li>
+                <Link to={"/register"}>Register</Link>
+              </li>
+            </>
+          )}
+          {user && (
+            <li>
+              <Link to={"/dashboard/home"}>Dashboard</Link>
+            </li>
+          )}
         </ul>
       </div>
-      <div className="navbar-end">
-        <a className="btn">Button</a>
+      <div className="navbar-end space-x-2">
+        {user && (
+          <button
+            onClick={handleLogout}
+            className="btn bg-red-500 text-white hidden lg:block"
+          >
+            Logout
+          </button>
+        )}
+        <div className="avatar">
+          <Link className="w-12 " to={user ? "/dashboard/home" : "/login"}>
+            <div className="rounded-full">
+              <img
+                className="rounded-full  border-purple-500 border-4"
+                src={user?.photoURL || "/public/placeholder.jpg"}
+              />
+            </div>
+          </Link>
+        </div>
       </div>
     </div>
   );
