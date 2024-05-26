@@ -1,6 +1,27 @@
 import { Link } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+  const { logout, user } = useAuth();
+
+  const handleLogout = async () => {
+    Swal.fire({
+      title: "Do you really want to logout?",
+      showDenyButton: false,
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      denyButtonText: `No`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        logout();
+        Swal.fire("Logged Out!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Still Logged in");
+      }
+    });
+  };
   return (
     <div className="navbar bg-purple-300">
       <div className="navbar-start">
