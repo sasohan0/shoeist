@@ -9,6 +9,9 @@ import DashboardLayout from "../layouts/DashboardLayout";
 
 import Dashboard from "../pages/Dashboard";
 import PrivateRoute from "./PrivateRoute";
+import AllProducts from "../pages/AllProducts";
+import AddProducts from "../pages/AddProduct";
+import EditProduct from "../pages/EditProduct";
 
 export const router = createBrowserRouter([
   {
@@ -52,6 +55,32 @@ export const router = createBrowserRouter([
             <Dashboard />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "all-products",
+        element: (
+          <PrivateRoute>
+            <AllProducts />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "add-products",
+        element: (
+          <PrivateRoute>
+            <AddProducts />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "all-products/edit/:id",
+        element: (
+          <PrivateRoute>
+            <EditProduct />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/shoes/${params.id}`),
       },
     ],
   },
