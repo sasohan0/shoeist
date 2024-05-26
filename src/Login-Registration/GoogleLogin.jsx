@@ -1,5 +1,20 @@
+import { FcGoogle } from "react-icons/fc";
+import useAuth from "../hooks/useAuth";
+
 const GoogleLogin = () => {
-  return <div></div>;
+  const { googleLogin } = useAuth();
+
+  const handleGoogleLogin = async () => {
+    await googleLogin();
+  };
+  return (
+    <button onClick={handleGoogleLogin} className="btn w-full">
+      <div className="flex items-center gap-2">
+        <FcGoogle size={24} />
+        <p>Google</p>
+      </div>
+    </button>
+  );
 };
 
 export default GoogleLogin;
